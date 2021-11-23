@@ -13,14 +13,23 @@ def mostra_tabellone():
     for i in range(3):
         for j in range(3):
             print(board[i][j], end=" ")
-    print()
+        print()
 
-mostra_tabellone()
+symList = ['X','O']
 
-print("Il tuo simbolo è: X")
-r = int(input("Inserisci la riga (valori da 0 a 2): "))
-c = int(input("Inserisici la colonna (valori da 0 a 2): "))
+for idx in range(9):
+    
+    symbol = symList[idx%2]
 
-board[r][c] = 'X'
+    mostra_tabellone()
 
-mostra_tabellone()
+    print("Il tuo simbolo è: "+symbol)
+
+    while True:
+        r = int(input("Inserisci la riga (valori da 0 a 2): "))
+        c = int(input("Inserisici la colonna (valori da 0 a 2): "))
+        #  aggiungere anche condizione che r,c devono essere compresi tra 0 e 2
+        if board[r][c]=='-':
+            board[r][c] = symbol
+            break
+        
