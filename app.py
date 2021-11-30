@@ -8,6 +8,7 @@ board = [
           ['-','-','-']
         ]
 
+symList = ['X','O']
 
 def mostra_tabellone():
     for i in range(3):
@@ -15,7 +16,34 @@ def mostra_tabellone():
             print(board[i][j], end=" ")
         print()
 
-symList = ['X','O']
+def win(board):
+    for sym in symList:
+
+        #check rows
+        for i in range(3):
+            if board[i].count(sym)==3:
+                return sym
+
+        #check columns
+        for i in range(3):
+            if (board[0][i]==sym and 
+               board[1][i]==sym and
+               board[2][i]==sym):
+                return sym
+        # check diagonals
+        if (board[0][0]==sym and
+           board[1][1]==sym and
+           board[2][2]==sym):
+            return sym
+        if (board[0][2]==sym and
+           board[1][1]==sym and
+           board[2][0]==sym):
+            return sym
+    
+    return False
+
+
+winner=False
 
 for idx in range(9):
     
@@ -32,4 +60,10 @@ for idx in range(9):
         if board[r][c]=='-':
             board[r][c] = symbol
             break
+    winner=win()
+    if winner:
+        break
         
+
+mostra_tabellone()
+print("The winner is... "+winner+"!")
